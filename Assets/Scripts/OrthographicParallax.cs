@@ -8,7 +8,8 @@ public class OrthographicParallax : MonoBehaviour
     private Vector3 startPos;
 
     public GameObject mainCamera;
-    public float parallaxScale;
+
+    public float maxDepth = 100;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class OrthographicParallax : MonoBehaviour
     void FixedUpdate() 
     {
         var cameraPos = mainCamera.transform.position;
-        var dist = cameraPos * parallaxScale;
+        var dist = cameraPos * (startPos.z / maxDepth);
 
         if (cameraPos.x > startPos.x + dist.x + length)
         {
