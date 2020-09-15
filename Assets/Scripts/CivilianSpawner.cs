@@ -5,6 +5,7 @@ using UnityEngine;
 public class CivilianSpawner : MonoBehaviour
 {
     public GameObject civilianPrefab;
+    public BoxCollider2D playerCollider;
     public float minX, maxX, y;
     public float rate;
 
@@ -16,6 +17,7 @@ public class CivilianSpawner : MonoBehaviour
 
     void SpawnCivilian()
     {
-        Instantiate(civilianPrefab, new Vector3(Random.Range(minX, maxX), y, 0), Quaternion.identity);
+        GameObject civilian = Instantiate(civilianPrefab, new Vector3(Random.Range(minX, maxX), y, 0), Quaternion.identity);
+        civilian.GetComponent<CivilianMovement>().playerCollider = playerCollider;
     }
 }
