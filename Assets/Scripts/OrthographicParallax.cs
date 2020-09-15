@@ -17,10 +17,24 @@ public class OrthographicParallax : MonoBehaviour
        length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
+    /*
+    behavior is kinda janky:
+    Positive-z: background parallax, z/maxDepth * cameraPos
+    Negative-z: foreground parallax, z * cameraPos
+    */
     void FixedUpdate() 
     {
         var cameraPos = mainCamera.transform.position;
-        var dist = cameraPos * (startPos.z / maxDepth);
+        var dist = cameraPos;
+        if (startPos.z < 0)
+        {
+            // behavior is kinda jank
+            dist *= startPos.z;
+        }
+        else
+        {
+            dist *= (startPos.z / maxDepth);
+        }
 
         if (cameraPos.x > startPos.x + dist.x + length)
         {
