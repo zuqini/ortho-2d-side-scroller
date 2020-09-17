@@ -12,6 +12,8 @@ public class CivilianMovement : MonoBehaviour
     void Start()
     {
         direction = Random.Range(0, 2) == 0 ? -1 : 1;
+        GetComponent<SpriteRenderer>().flipX = direction == 1;
+
         InvokeRepeating("Walk", 0.5f, 0.5f);
     }
 
