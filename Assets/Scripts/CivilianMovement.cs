@@ -27,6 +27,6 @@ public class CivilianMovement : MonoBehaviour
 
     void Walk()
     {
-        body.AddForce(new Vector2(direction * impulse, impulse / 2), ForceMode2D.Impulse);
+        body.AddForce(new Vector2(direction * impulse, 0), ForceMode2D.Impulse);
     }
 }
